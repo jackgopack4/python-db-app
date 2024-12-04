@@ -1,3 +1,6 @@
 $ docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
 $ pip install --upgrade pip
 $ pip install "psycopg[binary]"
+$ pip install opentelemetry-distro opentelemetry-exporter-otlp
+$ opentelemetry-bootstrap -a install
+$ docker run -v $(pwd)/config.yaml:/etc/otelcol-contrib/config.yaml -p 4317:4317 -p 4318:4318 -p 8888:8888 -p 8889:8889 -e DD_API_KEY=$DD_API_KEY otel/opentelemetry-collector-contrib:latest
